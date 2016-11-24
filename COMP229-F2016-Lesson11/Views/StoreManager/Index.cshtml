@@ -41,11 +41,18 @@
             @Html.DisplayFor(modelItem => item.Price)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.AlbumId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.AlbumId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.AlbumId })
+            
+            @Html.ActionLink("Details", "Details", new { id=item.AlbumId }) 
+
+            @if (Request.IsAuthenticated) {
+                
+                if (User.IsInRole("admin")) { 
+                    @Html.ActionLink("Edit ", "Edit", new { id = item.AlbumId }) 
+                    @Html.ActionLink("Delete", "Delete", new { id=item.AlbumId })
+                }
+            }
         </td>
     </tr>
-}
+            }
 
 </table>
